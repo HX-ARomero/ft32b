@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    margin: auto;
+    width: 45%;
+    justify-content: center;
+}
+
+.container input {
+    border-radius: 5px;
+    height: 30px;
+}
+
+.container button {
+    height: 30px;
+    background-color: rgb(110, 110, 110);
+    border-radius: 5px;
+    color: white;
+}
