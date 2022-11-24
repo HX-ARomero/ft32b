@@ -6,6 +6,7 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import About from "./components/About/About";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
   const example = {
@@ -16,7 +17,6 @@ function App() {
   };
 
   const [characters, setCharacters] = useState([]);
-  // characters [ {---}, {---} ]
 
   function onSearch(character) {
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
@@ -32,15 +32,10 @@ function App() {
   }
 
   const onClose = (id) => {
-    // console.log(id);
-    // console.log(characters);
-    // const filteredCh = characters.filter((char) => char.id !== id);
-    // console.log(filteredCh)
     setCharacters(characters.filter((char) => char.id !== id));
   };
 
   const location = useLocation();
-  // location = { pathname: url }
 
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
@@ -68,6 +63,7 @@ function App() {
           element={<Cards characters={characters} onClose={onClose} />}
         />
         <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/detail/:detailId" element={<Detail />} />
       </Routes>
     </div>
