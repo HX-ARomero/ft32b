@@ -9,13 +9,6 @@ import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
 
 function App() {
-  const example = {
-    name: "Morty Smith",
-    species: "Human",
-    gender: "Male",
-    image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-  };
-
   const [characters, setCharacters] = useState([]);
 
   function onSearch(character) {
@@ -39,23 +32,24 @@ function App() {
 
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const username = "ejemplo@gmail.com";
-  const password = "1password";
+  //const username = "ejemplo@gmail.com";
+  //const password = "1password";
 
   function login(userData) {
-    if (userData.password === password && userData.username === username) {
-      setAccess(true);
-      navigate("/home");
-    }
+    //if (userData.password === password && userData.username === username) {
+    setAccess(true);
+    navigate("/home");
+    //}
   }
 
   useEffect(() => {
     !access && navigate("/");
-  }, [access]);
+  }, [access, navigate]);
 
   return (
     <div className="App" style={{ padding: "25px" }}>
       {location.pathname !== "/" && <NavBar onSearch={onSearch} />}
+      <hr />
       <Routes>
         <Route path="/" element={<Form login={login} />} />
         <Route

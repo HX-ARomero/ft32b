@@ -1,6 +1,6 @@
 import { connect, useDispatch } from "react-redux"
 import Card from "../Card/Card"
-import { filterCards, orderCards } from "../redux/actions";
+import { filterCards, orderCards } from "../../redux/actions";
 
 export function Favorites({myFavorites}) {
   //console.log(myFavorites)
@@ -13,6 +13,8 @@ export function Favorites({myFavorites}) {
         return dispatch(orderCards(value))
       case "filter":
         return dispatch(filterCards(value))
+      default:
+        return myFavorites;
     }
   }
 
@@ -30,16 +32,18 @@ export function Favorites({myFavorites}) {
           <option value="unknown">unknown</option>
         </select>
       </div>
-      {myFavorites?.map((character, index) => (
-        <Card
-          detailId={character.detailId} // <-----
-          key={index}
-          name={character.name}
-          species={character.species}
-          gender={character.gender}
-          image={character.image}
-        />
-      ))}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        {myFavorites?.map((character, index) => (
+          <Card
+            detailId={character.detailId} // <-----
+            key={index}
+            name={character.name}
+            species={character.species}
+            gender={character.gender}
+            image={character.image}
+          />
+        ))}
+      </div>
     </div>
   )
 }

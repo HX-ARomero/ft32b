@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
-import { addFavorites, deleteFavorites } from "../redux/actions";
+import { addFavorites, deleteFavorites } from "../../redux/actions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -14,7 +14,7 @@ export function Card(props) {
             setIsFav(true);
          }
       });
-   }, [props.myFavorites]);
+   }, [props.myFavorites, props.detailId]);
 
    function handleFavorite() {
       if(isFav) {
@@ -37,14 +37,14 @@ export function Card(props) {
             }
             <button onClick={props.onClose}>X</button>
             </div>
-            <Link to={`/detail/${props.detailId}`}>
                <h2>{props.name}</h2>
+            <Link to={`/detail/${props.detailId}`}>
                <img className={styles.image} src={props.image} alt={props.name} />
+            </Link>
                <div className={styles.data}>
                   <h4>{props.species}</h4>
                   <h4>{props.gender}</h4>
                </div>
-            </Link>
       </div>
    );
 }
